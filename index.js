@@ -74,7 +74,7 @@ let myPhysic=require('./my_modules/myPhysic')
 let myVector=require('./my_modules/myVector')
 let objects=require('./objects')
 
-let fps=50
+let fps=30
 let ws=[]
 let tt=0
 
