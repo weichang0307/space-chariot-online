@@ -142,6 +142,7 @@ function update(){
 
 
     world_.update(1/fps)
+    requestAnimationFrame(update)
 
 }
 
@@ -205,7 +206,7 @@ function prepare_data_init(){
 
 
 init()
-setInterval(update,1000/fps)
+update()
 
 
 
