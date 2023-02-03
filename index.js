@@ -84,7 +84,7 @@ let barriers=[]
 
 
 
-let world_=new myPhysic.world(0,0,10)
+let world_=new myPhysic.world(0,0,1)
 function init(){
 
     ws.push(new myPhysic.polygon(1000,2000,[[-2000,-10],[2000,-10],[2000,10],[-2000,10]],Infinity))
