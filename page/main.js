@@ -19,7 +19,7 @@ let mode=0
 
 //socket
 
-let socket=io('ws://localhost:3000')
+let socket=io('wss://space-chariot-online.onrender.com/')
 
 
 function socket_init(){
