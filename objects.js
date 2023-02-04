@@ -26,7 +26,6 @@ class Car extends myPhysic.polygon{
     }
     fire(){
         if(this.cooldown<=0){
-           this.cooldown=1
             let p=myVector.add(this.position,myVector.rotate([0,-35],this.angle))
             let bb=new Bullet(p[0],p[1],this)
             bb.velocity=myVector.add(this.velocity,myVector.rotate([0,-3000],this.angle))
