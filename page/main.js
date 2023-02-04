@@ -4,7 +4,7 @@ ww=1600
 wh=800
 let ctx=canvas.getContext('2d')
 mysize()
-let fps=50
+let fps=10
 let ws=[]
 let tt=0
 
