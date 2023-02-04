@@ -113,6 +113,8 @@ function init(){
         document.addEventListener('touchmove',touch)
         document.addEventListener('touchend',touch_)
         document.addEventListener('touchcancel',touch_)
+        information.text='按螢幕的四個區塊(左上，右上，左下，右下)控制引擎 \n紅色按鈕發射子彈 \n一共有五滴血 被子彈打到扣一滴'
+        information.textArray=information.text.split('\n')
     }
 
     
@@ -124,7 +126,7 @@ function touch(e){
             if(p[1]<400){
                 keys[control_keys.rf]=true
             }else{
-                if((p[0]-900)**2+(p[1]-600)**2<100**2){
+                if((p[0]-1100)**2+(p[1]-600)**2<100**2){
                     keys[control_keys.fire]=true
                 }else{
                     keys[control_keys.rb]=true
@@ -151,7 +153,7 @@ function touch_(e){
             if(p[1]<400){
                 keys[control_keys.rf]=false
             }else{
-                if((p[0]-900)**2+(p[1]-600)**2<100**2){
+                if((p[0]-1100)**2+(p[1]-600)**2<100**2){
                     keys[control_keys.fire]=false
                 }else{
                     keys[control_keys.rb]=false
@@ -272,14 +274,14 @@ function draw(){
     if(!is_computer_){
         ctx.globalAlpha=0.5
         ctx.beginPath()
-        ctx.arc(900,600,100,0,Math.PI*2)
+        ctx.arc(1100,600,100,0,Math.PI*2)
         ctx.closePath()
         ctx.fillStyle='red'
         ctx.fill()
         ctx.globalAlpha=1
         ctx.font='40px serif'
         ctx.fillStyle='white'
-        ctx.fillText('FIRE',925,550)
+        ctx.fillText('FIRE',1100-25,625)
     }
     
 
