@@ -142,7 +142,7 @@ function update(){
 
 
     world_.update(1/fps)
-    requestAnimationFrame(update)
+    setTimeout(1000/fps)
 
 }
 
