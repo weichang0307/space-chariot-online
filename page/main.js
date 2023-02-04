@@ -17,9 +17,9 @@ let inputer
 let camera
 let mode=0
 
-//socket
+//socket'wss://space-chariot-online.onrender.com/'
 
-let socket=io('wss://space-chariot-online.onrender.com/')
+let socket=io()
 
 
 function socket_init(){
@@ -43,11 +43,14 @@ function socket_init(){
                 cars[i].hpbar_transparent=2
                 cars[i].hp=data.cars_hpbar[i]
             }
-            if(data.cars_power[i]===0){
-                cars[i].power=0
-            }else if(cars[i].power===0){
-                cars[i].power=1
+            for(let y in data.cars_power[i]){
+                if(data.cars_power[i][y]===0){
+                    cars[i].power[y]=0
+                }else if(cars[i].power[y]===0){
+                    cars[i].power[y]=1
+                }
             }
+            
         }
     })
     socket.on('init',(data)=>{
@@ -159,8 +162,10 @@ function draw(){
         world.draw_helper(i,'rgb(200,100,50)')
     }
     for(let i of cars){
-        if(i.power>0){
-            i.power=1+i.power%5
+        for(let y in i.power){
+            if(i.power[y]>0){
+                i.power[y]=1+i.power[y]%5
+            }
         }
         i.draw()
     }
