@@ -109,6 +109,8 @@ function init(){
     if(!is_computer()){
         document.addEventListener('touchstart',touch)
         document.addEventListener('touchmove',touch)
+        document.addEventListener('touchend',touch)
+        document.addEventListener('touchcancel',touch)
     }
 
     
@@ -118,7 +120,20 @@ function touch(e){
     for(let i of e.changedTouches){
         let p=get_p_in_world(i.pageX,i.pageY)
         if(p[0]>800){
-            keys[control_keys.lf]=true
+            if(p[1]<400){
+                keys[control_keys.rf]=true
+            }else{
+                keys[control_keys.rb]=true
+
+            }
+            
+        }else{
+            if(p[1]<400){
+                keys[control_keys.lf]=true
+            }else{
+                keys[control_keys.lb]=true
+
+            }
         }
     }
 }
@@ -321,6 +336,24 @@ function get_p_in_world(x,y){
 init()
 setInterval(update,1000/fps)
 draw()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
