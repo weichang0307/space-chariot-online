@@ -96,7 +96,7 @@ function init(){
         world_.add(i)
     }
 
-    for(let i=0;i<10;i++){
+    for(let i=0;i<0;i++){
         let r=Math.random()*100+50
         let ps=[]
         for(let rad=0;rad<Math.PI*2;rad+=Math.random()*1+1){
