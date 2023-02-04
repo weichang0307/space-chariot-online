@@ -74,7 +74,7 @@ let myPhysic=require('./my_modules/myPhysic')
 let myVector=require('./my_modules/myVector')
 let objects=require('./objects')
 
-let fps=50
+let fps=30
 let ws=[]
 let tt=0
 
@@ -84,7 +84,7 @@ let barriers=[]
 
 
 
-let world_=new myPhysic.world(0,0,2)
+let world_=new myPhysic.world(0,0,5)
 function init(){
 
     ws.push(new myPhysic.polygon(1000,2000,[[-2000,-10],[2000,-10],[2000,10],[-2000,10]],Infinity))
