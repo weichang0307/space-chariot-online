@@ -4,7 +4,7 @@ ww=1600
 wh=800
 let ctx=canvas.getContext('2d')
 mysize()
-let fps=5
+let fps=10
 let ws=[]
 let tt=0
 
@@ -17,9 +17,9 @@ let inputer
 let camera
 let mode=0
 
-//socket'wss://space-chariot-online.onrender.com/'
+//socket
 
-let socket=io()
+let socket=io('wss://space-chariot-online.onrender.com/')
 
 
 function socket_init(){
