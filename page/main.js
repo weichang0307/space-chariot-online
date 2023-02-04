@@ -106,9 +106,22 @@ function init(){
     window.addEventListener('keyup',keyup)
     document.addEventListener('click',onclick)
 
+    if(!is_computer()){
+        document.addEventListener('touchstart',touch)
+        document.addEventListener('touchmove',touch)
+    }
+
     
 }
-
+function touch(e){
+    keys={}
+    for(let i of e.changedTouches){
+        let p=get_p_in_world(i.pageX,i.pageY)
+        if(p[0]>800){
+            keys[control_keys.lf]=true
+        }
+    }
+}
 
 function update(){
 
@@ -253,6 +266,17 @@ function onclick(e){
     }
 }
 
+function is_computer(){
+	let iscom=true
+	let phone_char= ['Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'Windows Phone']
+	for(let i of phone_char){
+		if(navigator.userAgent.match(i)){
+			iscom=false
+			break
+		}
+	}
+	return iscom
+}
 
 function mysize(){
 	if(window.innerHeight/window.innerWidth>=wh/ww){
@@ -297,10 +321,6 @@ function get_p_in_world(x,y){
 init()
 setInterval(update,1000/fps)
 draw()
-
-
-
-
 
 
 
