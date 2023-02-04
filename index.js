@@ -142,7 +142,7 @@ function update(){
 
 
     world_.update(1/fps)
-    setTimeout(1000/fps)
+    setTimeout(update,1000/fps)
 
 }
 
