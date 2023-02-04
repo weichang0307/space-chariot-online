@@ -109,14 +109,13 @@ function init(){
     if(!is_computer()){
         document.addEventListener('touchstart',touch)
         document.addEventListener('touchmove',touch)
-        document.addEventListener('touchend',touch)
-        document.addEventListener('touchcancel',touch)
+        document.addEventListener('touchend',touch_)
+        document.addEventListener('touchcancel',touch_)
     }
 
     
 }
 function touch(e){
-    keys={}
     for(let i of e.changedTouches){
         let p=get_p_in_world(i.pageX,i.pageY)
         if(p[0]>800){
@@ -132,6 +131,27 @@ function touch(e){
                 keys[control_keys.lf]=true
             }else{
                 keys[control_keys.lb]=true
+
+            }
+        }
+    }
+}
+function touch_(e){
+    for(let i of e.changedTouches){
+        let p=get_p_in_world(i.pageX,i.pageY)
+        if(p[0]>800){
+            if(p[1]<400){
+                keys[control_keys.rf]=false
+            }else{
+                keys[control_keys.rb]=false
+
+            }
+            
+        }else{
+            if(p[1]<400){
+                keys[control_keys.lf]=false
+            }else{
+                keys[control_keys.lb]=false
 
             }
         }
