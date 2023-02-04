@@ -4,7 +4,7 @@ ww=1600
 wh=800
 let ctx=canvas.getContext('2d')
 mysize()
-let fps=10
+let fps=5
 let ws=[]
 let tt=0
 
@@ -37,11 +37,16 @@ function socket_init(){
         for(let i in cars){
             cars[i].position=data.cars_position[i]
             cars[i].angle=data.cars_angle[i]
-            cars[i].power=data.cars_power[i]
+            
             cars[i].bullets=data.cars_bullets[i]
             if(data.cars_hpbar[i]>0){
                 cars[i].hpbar_transparent=2
                 cars[i].hp=data.cars_hpbar[i]
+            }
+            if(data.cars_power[i]===0){
+                cars[i].power=0
+            }else if(cars[i].power===0){
+                cars[i].power=1
             }
         }
     })
@@ -135,6 +140,9 @@ function update(){
 }
 
 function draw(){
+    
+
+
     ctx.fillStyle='gray'
     ctx.fillRect(-1000,-1000,4000,4000)
 
@@ -151,6 +159,9 @@ function draw(){
         world.draw_helper(i,'rgb(200,100,50)')
     }
     for(let i of cars){
+        if(i.power>0){
+            i.power=1+i.power%5
+        }
         i.draw()
     }
     camera.end()

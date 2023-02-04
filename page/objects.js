@@ -56,7 +56,7 @@ class Car extends polygon{
     update(){
         this.cooldown-=1/50
         if(this.hpbar_transparent>0&&this.hp>0){
-            this.hpbar_transparent-=0.01
+            this.hpbar_transparent-=0.1
             if(this.hpbar_transparent<0){
                 this.hpbar_transparent=0
             }

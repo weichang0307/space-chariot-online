@@ -23,28 +23,28 @@ io.on('connection', (socket) => {
         if(i.socket===socket){
             if(data.control[0]){
                 i.get_force('lb').force=myVector.rotate([0,-1000],i.angle)
-                i.power.lb=(i.power.lb+1)%5
+                i.power.lb=1
             }else{
                 i.get_force('lb').force=[0,0]
                 i.power.lb=0
             }
             if(data.control[1]){
                 i.get_force('lf').force=myVector.rotate([0,1000],i.angle)
-                i.power.lf=(i.power.lf+1)%5
+                i.power.lf=1
             }else{
                 i.get_force('lf').force=[0,0]
                 i.power.lf=0
             }
             if(data.control[2]){
                 i.get_force('rf').force=myVector.rotate([0,1000],i.angle)
-                i.power.rf=(i.power.rf+1)%5
+                i.power.rf=1
             }else{
                 i.get_force('rf').force=[0,0]
                 i.power.rf=0
             }
             if(data.control[3]){
                 i.get_force('rb').force=myVector.rotate([0,-1000],i.angle)
-                i.power.rb=(i.power.rb+1)%5
+                i.power.rb=1
             }else{
                 i.get_force('rb').force=[0,0]
                 i.power.rb=0
@@ -74,7 +74,7 @@ let myPhysic=require('./my_modules/myPhysic')
 let myVector=require('./my_modules/myVector')
 let objects=require('./objects')
 
-let fps=30
+let fps=50
 let ws=[]
 let tt=0
 
@@ -84,7 +84,7 @@ let barriers=[]
 
 
 
-let world_=new myPhysic.world(0,0,1)
+let world_=new myPhysic.world(0,0,2)
 function init(){
 
     ws.push(new myPhysic.polygon(1000,2000,[[-2000,-10],[2000,-10],[2000,10],[-2000,10]],Infinity))
@@ -142,7 +142,6 @@ function update(){
 
 
     world_.update(1/fps)
-    setTimeout(update,1000/fps)
 
 }
 
@@ -206,7 +205,7 @@ function prepare_data_init(){
 
 
 init()
-update()
+setInterval(update,1000/fps)
 
 
 
