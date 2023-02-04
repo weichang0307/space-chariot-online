@@ -212,7 +212,7 @@ class Information{
     constructor(x,y){
         this.position=[x,y]
         this.state=0
-        this.text='Player1 \n控制引擎:E,D,Y,G  發射子彈:V \nPlayer2 \n控制引擎:7,4,9,6  發射子彈:0 \n \n一共有五滴血 被子彈打到扣一滴 \n按空白鍵可察看雙方血量'
+        this.text='控制引擎:E,D,Y,G  發射子彈:V \n一共有五滴血 被子彈打到扣一滴 \n按空白鍵可察看血量'
         this.textArray=this.text.split('\n')
     }
     onclick(click_point){
