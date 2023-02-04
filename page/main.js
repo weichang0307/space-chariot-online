@@ -16,6 +16,7 @@ let inputer
 let camera
 let mode=0
 let stars=[]
+let is_computer_=is_computer()
 
 //socket
 
@@ -105,8 +106,9 @@ function init(){
     window.addEventListener('keydown',keydown)
     window.addEventListener('keyup',keyup)
     document.addEventListener('click',onclick)
+    window.addEventListener('resize',mysize)
 
-    if(!is_computer()){
+    if(!is_computer_){
         document.addEventListener('touchstart',touch)
         document.addEventListener('touchmove',touch)
         document.addEventListener('touchend',touch_)
@@ -122,7 +124,13 @@ function touch(e){
             if(p[1]<400){
                 keys[control_keys.rf]=true
             }else{
-                keys[control_keys.rb]=true
+                if((p[0]-900)**2+(p[1]-600)**2<100**2){
+                    keys[control_keys.fire]=true
+                }else{
+                    keys[control_keys.rb]=true
+                }
+                
+
 
             }
             
@@ -143,7 +151,11 @@ function touch_(e){
             if(p[1]<400){
                 keys[control_keys.rf]=false
             }else{
-                keys[control_keys.rb]=false
+                if((p[0]-900)**2+(p[1]-600)**2<100**2){
+                    keys[control_keys.fire]=false
+                }else{
+                    keys[control_keys.rb]=false
+                }
 
             }
             
@@ -257,6 +269,19 @@ function draw(){
         i.draw()
     }
     camera.end()
+    if(!is_computer_){
+        ctx.globalAlpha=0.5
+        ctx.beginPath()
+        ctx.arc(900,600,100,0,Math.PI*2)
+        ctx.closePath()
+        ctx.fillStyle='red'
+        ctx.fill()
+        ctx.globalAlpha=1
+        ctx.font='40px serif'
+        ctx.fillStyle='white'
+        ctx.fillText('FIRE',925,550)
+    }
+    
 
     if(mode===0){
         ctx.globalAlpha=0.5
