@@ -1,4 +1,3 @@
-
 let canvas=document.getElementById('canvas')
 ww=1600
 wh=800
@@ -16,6 +15,7 @@ let information
 let inputer
 let camera
 let mode=0
+let stars=[]
 
 //socket
 
@@ -90,7 +90,11 @@ let cooldown=0
 function init(){
     socket_init()
     
-
+    for(let i=0;i<1000;i++){
+        let x=Math.random()*2000
+        let y=Math.random()*2000
+        stars.push([x,y,Math.random(),Math.sign(Math.random()-0.5),Math.random()])
+    }
 
 
     camera=new Camera(800,400,800,400)
@@ -144,18 +148,53 @@ function update(){
 
 function draw(){
     
+    
 
-
-    ctx.fillStyle='gray'
-    ctx.fillRect(-1000,-1000,4000,4000)
+    
 
 
     if(car){
         camera.position=car.position
     }
     camera.start()
+    
+    ctx.fillStyle='gray'
+    ctx.fillRect(-1000,-1000,4000,4000)
     ctx.fillStyle='black'
     ctx.fillRect(10,10,2000-20,2000-20)
+    ctx.fillStyle='white'
+    for(let i of stars){
+        
+        ctx.globalAlpha=i[2]
+        ctx.save()
+        ctx.translate(i[0],i[1])
+        ctx.scale(i[4]*2,i[4]*2)
+        ctx.beginPath()
+        ctx.moveTo(-1,-1)
+        ctx.lineTo(-10,0)
+        ctx.lineTo(-1,1)
+        ctx.lineTo(0,10)
+        ctx.lineTo(1,1)
+        ctx.lineTo(10,0)
+        ctx.lineTo(1,-1)
+        ctx.lineTo(0,-10)
+        ctx.closePath()
+        ctx.fill()
+        ctx.restore()
+        ctx.globalAlpha=1
+
+        i[2]+=Math.random()*0.1*i[3]
+        if(i[2]>1){
+            i[2]=1
+            i[3]=-1
+        }
+        if(i[2]<0){
+            i[2]=0
+            i[3]=1
+        }
+        
+
+    }
     
 
     for(let i of barriers){
@@ -258,19 +297,6 @@ function get_p_in_world(x,y){
 init()
 setInterval(update,1000/fps)
 draw()
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
